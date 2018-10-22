@@ -1,0 +1,19 @@
+version: "3.7"
+
+networks:
+  demo:
+
+services:
+  webapp:
+    build: docker-node
+    networks:
+      - demo
+
+  nginx:
+    build: nginx
+    networks:
+      - demo
+    depends_on:
+      - webapp
+    ports:
+      - "80:80"
